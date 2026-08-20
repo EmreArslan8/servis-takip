@@ -491,6 +491,7 @@ function rProducts(){
     '<div class="searchbox pt-main">'+IC.search+'<input id="pSearch" placeholder="Ürün adı, SKU, model ara… (örn: iphone 13 ekran)" value="'+esc(f.q)+'"></div>'+
     '<div class="searchbox pt-bar">'+IC.barcode+'<input id="pBarcode" placeholder="Barkod oku, Enter" style="padding-left:36px"></div>'+
    '</div>'+
+   '<button class="filt-toggle" data-act="filtToggle">'+IC.filter+' Filtreler'+(anyFilter?' <span class="fd">•</span>':'')+'</button>'+
    '<div class="pt-filters">'+
     '<select class="fld" id="fBrand"><option value="">Tüm markalar</option>'+selOpts(brandOpts,f.brand)+'</select>'+
     '<select class="fld" id="fModel"><option value="">Tüm modeller</option>'+selOpts(modelOpts,f.model)+'</select>'+
@@ -888,6 +889,7 @@ document.addEventListener('click',e=>{
   case 'burger':{const op=document.getElementById('sidebar').classList.toggle('open');document.body.classList.toggle('nav-open',op);break;}
   case 'sbToggle':document.body.classList.toggle('sb-collapsed');try{localStorage.setItem('sbCollapsed',document.body.classList.contains('sb-collapsed')?'1':'0')}catch(e){}break;
   case 'ttree':state.pf.brand=t.dataset.b;state.pf.model=t.dataset.m;state.pf.cat=t.dataset.c;state.pf.qual='all';document.getElementById('sidebar').classList.remove('open');renderView();break;
+  case 'filtToggle':t.closest('.prod-toolbar').classList.toggle('filt-open');break;
   case 'qual':state.pf.qual=t.dataset.q;renderView();break;
   case 'clearpf':state.pf.q='';state.pf.brand='';state.pf.model='';state.pf.cat='';state.pf.sub='';state.pf.sup='';state.pf.stok='all';state.pf.qual='all';state.pf.treeQ='';renderView();break;
   case 'prow':modal(prodModalHtml(prod(t.dataset.pid)),'wide');break;

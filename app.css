@@ -301,6 +301,9 @@ tr:hover .stock-cell{border-color:var(--line2)}
 .pt-filters{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
 .pt-filters .fld{height:36px;font-size:13.5px;width:auto;min-width:150px;flex:1 1 140px;max-width:200px}
 .pt-filters .q-chips{display:flex;gap:6px;margin-left:auto}
+.filt-toggle{display:none;align-items:center;justify-content:center;gap:7px;width:100%;height:42px;border:1px solid var(--line2);background:var(--soft);color:var(--ink);border-radius:10px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer}
+.filt-toggle svg{width:16px;height:16px}
+.filt-toggle .fd{color:var(--accent);font-size:20px;line-height:0}
 .chip.clr{border-color:var(--line2);background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;gap:5px}
 .chip.clr svg{width:12px;height:12px}
 .chip.clr:hover{border-color:var(--red);color:var(--red)}
@@ -377,7 +380,13 @@ tr:hover .stock-cell{border-color:var(--line2)}
 @media(max-width:640px){
   .pt-search{flex-direction:column}
   .pt-bar{width:100%}
-  .pt-filters .fld{max-width:none;flex:1 1 100%}
+  /* mobilde filtreler gizli, düğmeyle açılır */
+  .filt-toggle{display:flex}
+  .pt-filters{display:none;grid-template-columns:1fr 1fr;gap:8px}
+  .prod-toolbar.filt-open .pt-filters{display:grid}
+  .pt-filters .fld{max-width:none;min-width:0;width:100%;flex:none}
+  .pt-filters .q-chips{grid-column:1/-1;margin-left:0;flex-wrap:wrap}
+  .pt-filters .chip.clr{grid-column:1/-1}
 }
 #sbBackdrop{display:none}
 @media(max-width:900px){
@@ -393,8 +402,13 @@ tr:hover .stock-cell{border-color:var(--line2)}
   body.sb-collapsed .nav a{justify-content:flex-start;gap:11px;padding:8.5px 11px}
   body.sb-collapsed .nav a::after{display:none}
   body.sb-collapsed .nav-sec{color:#6E7482;font-size:11px;height:auto;background:none;margin:18px 10px 7px}
-  #burger{display:block}
+  #burger{display:block;flex:none}
   .top-chip,.demo-pill{display:none}
+  /* header: başlık + arama ayrı satırda, sıkışmasın */
+  #topbar{height:auto;flex-wrap:wrap;padding:9px 12px;gap:8px 12px}
+  #topbar .page-title{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .searchbox{order:3;flex:1 0 100%;max-width:none;margin-left:0}
+  #topbar{position:sticky}
   .stat-grid{grid-template-columns:1fr 1fr}
   .f-row,.f-row3{grid-template-columns:1fr}
   .login-brand{display:none}
