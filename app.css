@@ -266,6 +266,13 @@ details.tree-grp summary .sc{margin-left:auto;font-family:var(--mono);font-size:
 .filter-bar{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px;align-items:center}
 .filter-bar select{height:34px;font-size:13.5px}
 .filter-bar .q-chips{display:flex;gap:6px;margin-left:auto}
+@media(max-width:640px){
+  .filter-bar>.searchbox{max-width:none!important;flex:1 1 100%}
+  .filter-bar .fld{width:auto!important;flex:1 1 45%;min-width:0}
+  .filter-bar>.btn{margin-left:0!important;flex:1 1 100%;justify-content:center}
+  .filter-bar .warn-strip{margin-left:0!important;flex:1 1 100%}
+  .filter-bar>select[style*="width:150px"]{width:auto!important;flex:1 1 100%}
+}
 .chip{border:1px solid var(--line2);background:var(--panel);border-radius:999px;padding:5px 13px;font-size:13px;font-weight:600;color:var(--ink2);transition:.14s}
 .chip:hover{border-color:var(--ink3)}
 .chip.on{background:var(--side);color:#fff;border-color:var(--side)}
@@ -292,6 +299,17 @@ tr:hover .stock-cell{border-color:var(--line2)}
 .price-buy{font-family:var(--mono);font-size:12px;color:var(--ink3)}
 .price-sell{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--ink);margin-top:2px}
 .tot-num{font-family:var(--disp);font-size:19px;font-weight:700;color:var(--ink)}
+/* transfer formu */
+.trf-grid{display:grid;grid-template-columns:1fr 1fr 1fr 100px 1.4fr auto;gap:12px;align-items:end}
+.trf-grid .btn{height:38px}
+@media(max-width:760px){
+  .trf-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .trf-grid>.f-group:first-child{grid-column:1/-1}
+  .trf-grid .btn{grid-column:1/-1;justify-content:center}
+}
+@media(max-width:440px){
+  .trf-grid{grid-template-columns:1fr}
+}
 /* products toolbar */
 .prod-toolbar{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px;display:flex;flex-direction:column;gap:11px}
 .pt-search{display:flex;gap:10px}
