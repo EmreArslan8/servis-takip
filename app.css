@@ -379,9 +379,12 @@ tr:hover .stock-cell{border-color:var(--line2)}
   .pt-bar{width:100%}
   .pt-filters .fld{max-width:none;flex:1 1 100%}
 }
+#sbBackdrop{display:none}
 @media(max-width:900px){
   #sidebar{transform:translateX(-100%);width:264px}
   #sidebar.open{transform:none;box-shadow:0 0 60px rgba(0,0,0,.4)}
+  #sbBackdrop{display:block;position:fixed;inset:0;background:rgba(15,17,21,.5);z-index:45;opacity:0;pointer-events:none;transition:opacity .25s ease}
+  body.nav-open #sbBackdrop{opacity:1;pointer-events:auto}
   #main{margin-left:0}
   #sbToggle{display:none}
   body.sb-collapsed #sidebar{width:264px}

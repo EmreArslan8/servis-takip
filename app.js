@@ -59,7 +59,7 @@ const SHELL = String.raw`<!-- ================= LOGIN ================= -->
 
   <div id="main">
     <div id="topbar">
-      <button id="burger" aria-label="Menü">
+      <button id="burger" data-act="burger" aria-label="Menü">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h10M4 17h16"/></svg>
       </button>
       <div class="page-title" id="pageTitle"></div>
@@ -75,6 +75,7 @@ const SHELL = String.raw`<!-- ================= LOGIN ================= -->
   </div>
 </div>
 
+<div id="sbBackdrop" data-act="sbBackdrop"></div>
 <div id="toasts"></div>
 <div id="modals"></div>
 <div id="printArea"></div>
@@ -877,13 +878,14 @@ document.addEventListener('click',e=>{
  }
  const a=t.dataset.act;
  switch(a){
-  case 'nav':e.preventDefault();navigate(t.dataset.v);break;
+  case 'nav':e.preventDefault();navigate(t.dataset.v);document.getElementById('sidebar').classList.remove('open');document.body.classList.remove('nav-open');break;
+  case 'sbBackdrop':document.getElementById('sidebar').classList.remove('open');document.body.classList.remove('nav-open');break;
   case 'login':{
    if(window.ROLE_LINKS){const r=(USERS.find(u=>u.id===t.dataset.u)||{}).role;if(window.ROLE_LINKS[r]){location.href=window.ROLE_LINKS[r];break;}}
    login(t.dataset.u);break;
   }
   case 'close':closeModal();break;
-  case 'burger':document.getElementById('sidebar').classList.toggle('open');break;
+  case 'burger':{const op=document.getElementById('sidebar').classList.toggle('open');document.body.classList.toggle('nav-open',op);break;}
   case 'sbToggle':document.body.classList.toggle('sb-collapsed');try{localStorage.setItem('sbCollapsed',document.body.classList.contains('sb-collapsed')?'1':'0')}catch(e){}break;
   case 'ttree':state.pf.brand=t.dataset.b;state.pf.model=t.dataset.m;state.pf.cat=t.dataset.c;state.pf.qual='all';document.getElementById('sidebar').classList.remove('open');renderView();break;
   case 'qual':state.pf.qual=t.dataset.q;renderView();break;
